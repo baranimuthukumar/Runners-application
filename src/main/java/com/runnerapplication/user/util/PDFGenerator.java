@@ -149,11 +149,8 @@ public class PDFGenerator {
 			if(columnsList.contains("serialNo")) {
 				table.addCell(String.valueOf(runnerProfileEntityList.getSerialNo()));
 			}
-			if(columnsList.contains("profileName")) {
-				table.addCell(String.valueOf(runnerProfileEntityList.getProfileName()));
-			}
 			if(columnsList.contains("userName")) {
-				table.addCell(String.valueOf(runnerProfileEntityList.getProfileName()));
+				table.addCell(String.valueOf(runnerProfileEntityList.getUserName()));
 			}
 			if(columnsList.contains("age")) {
 				table.addCell(String.valueOf(runnerProfileEntityList.getAge()));
