@@ -1,0 +1,44 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="menu-icon">
+        <mat-icon> directions_run</mat-icon>
+    </button>
+    <span>Tiruppur Runners</span>
+    <span class="runner-spacer"></span>
+  </mat-toolbar>
+
+
+<div class="main-div">
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Welcome to Tirupur Runners.</p>
+      <form class="example-form">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+          </mat-form-field></td>
+        </tr></table>
+    </form>
+    <p>
+      Don't have an account?Click Register.
+    </p>
+    </mat-card-content>
+    <p *ngIf="error" class="error">
+        {{ errorValue }}
+      </p>
+    <mat-card-actions [align]="'end'">
+      <button mat-raised-button (click)="login()" color="primary">Login</button>
+      <button mat-raised-button style="margin-left:10px" (click)="register()" color="warn">Register</button>
+    </mat-card-actions>
+  </mat-card>
+  </div>

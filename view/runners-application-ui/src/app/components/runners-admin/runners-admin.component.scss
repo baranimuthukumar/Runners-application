@@ -1,0 +1,56 @@
+.mat-tab-group {
+    margin-bottom: 48px;
+  }
+
+.runner-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-mdc-outlined-button:not(:disabled) {
+    color: #ffffff;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.container{
+  max-width:100%;
+  margin:0 auto;
+}
+
+.containerMarathon{
+  max-width:1000px;
+  margin:0 auto;
+}
+
+.containerReport{
+  max-width:1000px;
+  margin:0 auto;
+}
+
+.runnerTable{
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.marthon-form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top:10px;
+}
+
+.marthon-form-input {
+  width: 47%;
+}
+
+.topperTable{
+  position: relative;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,55 @@
+.accordian-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordian-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+.mat-tab-group {
+  margin-bottom: 48px;
+}
+
+.runner-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-mdc-outlined-button:not(:disabled) {
+  color: #ffffff;
+}
+
+table {
+width: 100%;
+}
+
+.mat-mdc-form-field {
+font-size: 14px;
+width: 100%;
+}
+
+.container{
+max-width:1200px;
+margin:0 auto;
+}
+
+.containerProfile{
+  max-width:1000px;
+  margin:0 auto;
+}
+
+.runner-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top:10px;
+}
+
+.runner-form-input {
+  width: 47%;
+}
+
+.runner-form-input-user{
+  margin-left: 8px;
+  width: 47%;
+}

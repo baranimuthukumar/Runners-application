@@ -1,0 +1,79 @@
+
+    <div id="contentToConvert" class="container">
+        <div style="margin-top:10px">   
+            <mat-toolbar class="div-class" color="primary">
+                <button mat-icon-button class="menu-icon">
+                    <mat-icon> directions_run</mat-icon>
+                </button>
+                <span>Tiruppur Runners</span>
+                <span class="runner-spacer"></span>
+              </mat-toolbar>
+              <img class="imgClass" src="{{fileInfos[0].fileDownloadUri}}" alt="">
+      <div class="div-class">
+        <label class="label-class">Name</label>
+        <span>: {{runnerProfile.userName}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class">Email</label>
+        <span>: {{runnerProfile.email}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class"> Age</label>
+        <span>: {{runnerProfile.age}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >DOB</label>
+        <span>: {{runnerProfile.dob}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >Contact Number</label>
+        <span>: {{runnerProfile.contactNumber}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >Emergency Contact Name</label>
+        <span>: {{runnerProfile.emergencyContactName}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >Emergency Contact Number</label>
+        <span>: {{runnerProfile.emergencyContactNumber}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >Profession</label>
+        <span>: {{runnerProfile.profession}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >Age Category</label>
+        <span>: {{runnerProfile.ageCategory}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >Personal Best</label>
+        <span>: {{runnerProfile.personalBest}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >Blood group</label>
+        <span>: {{runnerProfile.bloodGroup}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >T-Shirt Size</label>
+        <span>: {{runnerProfile.tshirtSize}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >Interests other than Running</label>
+        <span>: {{runnerProfile.interestsOtherThanRunning}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >Tell about yourself</label>
+        <span>: {{runnerProfile.tellAboutyourself}}</span>
+      </div>
+      <div class="div-class">
+        <label class="label-class" >Strava Athelete Link</label>
+        <span>: {{runnerProfile.stravaLink}}</span>
+      </div>
+      <div class="centerClass">
+        <span>Running is not about being better than someone else. It's about being better than you used to be.</span>
+      </div>
+      </div>
+      </div>
+      <div class="centerClass">
+        <button (click)="generatePDF()">Download Profile</button>
+      </div>

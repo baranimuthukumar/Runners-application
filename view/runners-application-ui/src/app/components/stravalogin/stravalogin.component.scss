@@ -1,0 +1,24 @@
+.runner-spacer {
+    flex: 1 1 auto;
+  }
+
+  .topperTable{
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .containerProfile{
+    max-width:1000px;
+    margin:0 auto;
+  }
+
+  .runner-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top:10px;
+  }
+  
+  .runner-form-input {
+    width: 47%;
+  }

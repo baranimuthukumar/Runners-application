@@ -1,0 +1,204 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="menu-icon">
+      <mat-icon> directions_run</mat-icon>
+  </button>
+  <span>Tiruppur Runners</span>
+  <span class="runner-spacer"></span>
+  <button mat-stroked-button color="accent" (click)="openDialog()">Add Runner Data</button>
+  <!--<button mat-stroked-button color="accent" (click)="updateData()">Update Runner Data</button> -->
+  <button style="margin-left:10px" (click)="logout()" mat-stroked-button color="warn">Logout</button>
+</mat-toolbar>
+
+<mat-tab-group dynamicHeight animationDuration="2000ms">
+  <mat-tab label="Runners Profile">
+    <div class="container">
+      <div style="margin-top:10px">   
+          <mat-form-field>
+              <mat-label>Filter</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Tiruppur" #input>
+            </mat-form-field>
+            
+            <div class="runnerTable mat-elevation-z8">
+              <table mat-table #runnerTable [dataSource]="dataSource" matSort>
+            
+                <ng-container matColumnDef="serialNo">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> S.No </th>
+                  <td mat-cell *matCellDef="let row"> {{row.serialNo}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="userName">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> User Name </th>
+                  <td mat-cell *matCellDef="let row"> {{row.userName}} </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="dob">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
+                  <td mat-cell *matCellDef="let row"> {{row.dob}} </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="contactNumber">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact Number </th>
+                  <td mat-cell *matCellDef="let row"> {{row.contactNumber}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="personalBest">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Personal Best </th>
+                  <td mat-cell *matCellDef="let row"> {{row.personalBest}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tshirtSize">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> T-shirt Size </th>
+                  <td mat-cell *matCellDef="let row"> {{row.tshirtSize}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tshirtIssued">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> T-shirt Issued </th>
+                  <td mat-cell *matCellDef="let row"> {{row.tshirtIssued}} </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="actionEdit">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+                  <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button (click)="editMarathon(row)" color="primary">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actionPDF">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> PDF </th>
+                  <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button (click)="downloadPdf(row)" color="primary">
+                      <mat-icon>assignment_returned</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+                  <td mat-cell *matCellDef="let row">
+                  <button mat-icon-button (click)="deleteMarathonData(row)" color="warn">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                  </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+              </table>
+            
+              <mat-paginator #runnerTablePage="matPaginator" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+            </div>
+                
+      </div>
+    </div>
+  </mat-tab>
+    <mat-tab label="Marathon Event">
+      <div class="containerMarathon">
+        <h1 mat-title> Add Future Marathon Detail</h1>
+        <div class="marthon-form">
+          <mat-form-field class="marthon-form-input" appearance="outline">
+            <mat-label>Marathon Name</mat-label>
+            <input matInput [(ngModel)]="marathonEvent.eventName" placeholder="Marathon Name">
+          </mat-form-field>
+          <mat-form-field class="marthon-form-input" appearance="outline">
+            <mat-label>Year</mat-label>
+            <input matInput [(ngModel)]="marathonEvent.eventYear" placeholder="Marathon Year">
+          </mat-form-field>
+        </div>
+        <div stle="margin-bottom: 10px;"  [align]="'end'">
+          <button mat-raised-button color="primary" (click)="addMarathonDetail()">Save Detail</button>
+      </div>
+      <div class="marthon-form">
+        <mat-form-field class="marthon-form-input" appearance="outline">
+          <mat-label>Event Name</mat-label>
+           <mat-select [(ngModel)]="marathonId" (selectionChange)="selectedValue($event)">
+              <mat-option *ngFor="let name of eventNames" [value]="name.marathonId">{{ name.eventName }}</mat-option>
+            </mat-select> 
+        </mat-form-field>
+        <mat-form-field class="marthon-form-input" appearance="outline">
+          <mat-label>Year</mat-label>
+          <input matInput [(ngModel)]="eventYear" placeholder="Marathon Year">
+        </mat-form-field>
+      </div>
+      <div stle="margin-bottom: 10px;"  [align]="'end'">
+        <button mat-raised-button color="primary" (click)="downloadEvent()">Download Event</button>
+    </div>
+      </div>
+      
+    </mat-tab>
+    
+    <mat-tab label="Runners Report">
+      <div class="containerReport">
+        <mat-form-field class="ca80">
+          <mat-label>Select Columns to generate reports.</mat-label>
+          <mat-select placeholder="Select Columns" [formControl]="selectedList" multiple>
+            <mat-option *ngFor="let column of columnList" [value]="column">{{column}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div stle="margin-bottom: 10px;"  [align]="'end'">
+          <button mat-raised-button color="primary" (click)="generateReport()">Generate Report</button>
+      </div>
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Runners Statistics">
+      <div class="containerReport">
+          <div style="margin-top:10px">   
+            <div class="marthon-form">
+              <mat-form-field class="marthon-form-input" appearance="outline">
+                <mat-label>Select Month</mat-label>
+                 <mat-select [(ngModel)]="monthId" (selectionChange)="selectedMonth($event)">
+                    <mat-option *ngFor="let month of monthDetails" [value]="month">{{ month }}</mat-option>
+                  </mat-select> 
+              </mat-form-field>
+            </div>
+              <mat-form-field>
+                  <mat-label>Filter</mat-label>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Tiruppur" #input>
+                </mat-form-field>
+                
+                <div class="topperTable mat-elevation-z8">
+                  <table #topperTable mat-table [dataSource]="topperdataSource" matSort >
+                
+                    <ng-container matColumnDef="rank">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rank </th>
+                      <td mat-cell *matCellDef="let row"> {{row.rank}} </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="athlete">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Athlete </th>
+                      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                    </ng-container>
+              
+                    <ng-container matColumnDef="distance">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>
+                      <td mat-cell *matCellDef="let row"> {{row.distance}} km </td>
+                    </ng-container>
+  
+                    <ng-container matColumnDef="activeDays">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Active Days </th>
+                      <td mat-cell *matCellDef="let row"> {{row.activeDays}} </td>
+                    </ng-container>
+    
+                    <tr mat-header-row *matHeaderRowDef="runnersdisplayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: runnersdisplayedColumns;"></tr>
+      
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr>
+                  </table>
+                
+                  <mat-paginator  #topperMarathon="matPaginator" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+                </div>
+                    
+          </div>
+      </div>
+  
+    </mat-tab>
+    
+  </mat-tab-group>

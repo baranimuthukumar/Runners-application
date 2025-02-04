@@ -1,0 +1,15 @@
+<div *ngIf="activities.length > 0; else noActivities">
+    <h2>User Activities</h2>
+   <!-- <h2>{{totalDistance | number:'1.2-2'}}</h2>
+    <h2>{{totalTime | number:'1.2-2'}}</h2> -->
+    <h2>TotalRuns :- {{totalrun}}</h2>
+    <h2>TotalDistance :- {{distanceYear}}</h2>
+    <ul>
+      <li *ngFor="let activity of activities">
+        {{ activity.name }} - {{ activity.distance }} meters
+      </li>
+    </ul>
+  </div>
+  <ng-template #noActivities>
+    <p>No activities found.</p>
+  </ng-template>

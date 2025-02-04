@@ -1,0 +1,45 @@
+<h1 *ngIf="this.actionButton==='Save'" mat-dialog-title> Add Marathon Detail</h1>
+<h1 *ngIf="this.actionButton==='Update'" mat-dialog-title> Update Marathon Detail</h1>
+<div mat-dialog-content>
+    <form [formGroup]="marathonForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Event Name</mat-label>
+           <mat-select formControlName="eventName" (selectionChange)="selectedValue($event)">
+              <mat-option *ngFor="let name of eventNames" [value]="name.marathonId">{{ name.eventName }}</mat-option>
+            </mat-select> 
+          </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Past Or Future</mat-label>
+              <mat-select formControlName="futureOrpast"> 
+                  <mat-option value="Past">Past</mat-option>
+                  <mat-option value="Future">Future</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field  *ngIf="this.actionButton==='Update'" appearance="outline">
+              <mat-label>Personal Best</mat-label>
+              <input formControlName="bestTime" matInput placeholder="Personal Best">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Distance</mat-label>
+              <mat-select formControlName="distance">
+                  <mat-option value="5Km">5Km</mat-option>
+                  <mat-option value="10Km">10Km</mat-option>
+                  <mat-option value="21Km">21Km</mat-option>
+                  <mat-option value="42Km">42Km</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Podium</mat-label>
+              <input formControlName="podium" matInput placeholder="Podium">
+            </mat-form-field>
+            <mat-form-field *ngIf="this.actionButton==='Save'" appearance="outline">
+              <mat-label>Payment Refernce Number</mat-label>
+              <input formControlName="paymentReference" matInput placeholder="Payment Refernce Number">
+              <mat-hint>If payment Done pls specify the payment reference number.</mat-hint>
+            </mat-form-field>
+    </form>
+    <div mat-dialog-action style="margin-top:20px" [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+        <button style="margin-left:10px" mat-raised-button color="primary" (click)="addMarathonDetail()">{{actionButton}}</button>
+    </div>
+</div>
